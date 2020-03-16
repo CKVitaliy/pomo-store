@@ -1,0 +1,7 @@
+.element{
+    border: 1px solid grey;
+}
+.divAlert {
+    display: flex;
+    align-items: center;
+}

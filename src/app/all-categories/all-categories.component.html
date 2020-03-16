@@ -1,0 +1,15 @@
+<div class="container">
+    <div class="row" *ngIf="allCategoryArray">
+        <div class="col-6 mb-4 pr-0" *ngFor="let el of allCategoryArray">
+            <div class="element p-0 text-center">
+                <a routerLink="/products/{{el.name}}">
+                    <img src="http://localhost:3000/{{el.image}}" class="img-fluid">
+                    <div class="p-2" style="color: white; background-color: #343a40!important">{{el.name}}</div>
+                </a>
+            </div>
+        </div>
+        <div class="form-control alert alert-danger divAlert" *ngIf="errorMessage">
+            {{errorMessage}}
+        </div>
+    </div>
+</div>

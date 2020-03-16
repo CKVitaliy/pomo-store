@@ -1,0 +1,64 @@
+<div *ngIf="singleProduct">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-6 mb-4 pr-0">
+                <div class="element p-0">
+                    <div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="http://localhost:3000/{{singleProduct.image[0]}}" class="d-block w-100"
+                                     alt="...">
+                            </div>
+                            <div class="carousel-item" *ngIf="singleProduct.image[1]">
+                                <img src="http://localhost:3000/{{singleProduct.image[1]}}" class="d-block w-100"
+                                     alt="...">
+                            </div>
+                            <div class="carousel-item" *ngIf="singleProduct.image[2]">
+                                <img src="http://localhost:3000/{{singleProduct.image[2]}}" class="d-block w-100"
+                                     alt="...">
+                            </div>
+                            <div class="carousel-item" *ngIf="singleProduct.image[3]">
+                                <img src="http://localhost:3000/{{singleProduct.image[3]}}" class="d-block w-100"
+                                     alt="...">
+                            </div>
+                            <div class="carousel-item" *ngIf="singleProduct.image[4]">
+                                <img src="http://localhost:3000/{{singleProduct.image[4]}}" class="d-block w-100"
+                                     alt="...">
+                            </div>
+                        </div>
+                        <a class="carousel-control-prev" href="#carouselExampleFade" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselExampleFade" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                    <div class="p-1">
+                        <div>{{singleProduct.name}}</div>
+                        <div>&#8372;{{singleProduct.price}}.00</div>
+                        <select class="btn btn-dark mb-1" value="{{singleProduct.size}}" #selectElement>
+                            <option>XS</option>
+                            <option>S</option>
+                            <option>M</option>
+                            <option>L</option>
+                            <option>XL</option>
+                            <option>XXL</option>
+                        </select>
+                        <button class="btn btn-dark form-control" (click)="addProductToBasket(selectElement.value)">
+                            Add
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-control alert alert-success divAlert" *ngIf="successMessage">
+            {{successMessage}}
+        </div>
+    </div>
+</div>
+<div class="form-control alert alert-danger divAlert" *ngIf="errorMessage">
+    {{errorMessage}}
+</div>

@@ -1,0 +1,55 @@
+<div class="text-center">
+    <h2>Shopping cart</h2>
+</div>
+
+<table class="table table-bordered table-hover text-center">
+    <thead>
+    <tr>
+        <td scope="col" colspan="2"><span>You have {{quantity}} items in your shopping cart</span></td>
+        <td scope="col">
+            <button class="btn btn-outline-dark" style="border: none" (click)="cleanShoppingCart()">Clean shopping
+                cart
+            </button>
+        </td>
+    </tr>
+    </thead>
+    <thead>
+    <tr>
+        <th scope="col">Product</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Price</th>
+    </tr>
+    </thead>
+
+    <tbody *ngFor="let el of basketArray">
+    <tr>
+        <td scope="row">
+            <div class="media">
+                <img src="http://localhost:3000/{{el.image[0]}}" style="width: 75px">
+                <div class="media-body">
+                    <p>{{el.name}}, size {{el.size}}</p>
+                </div>
+            </div>
+        </td>
+        <td>
+            <button class="btn btn-dark mr-2" (click)="minusQuantity(el)">-</button>
+            {{el.quantity}} in cart
+            <button class="btn btn-dark ml-2" (click)="plusQuantity(el)">+</button>
+        </td>
+        <td>&#8372;{{el.price * el.quantity}}.00</td>
+    </tr>
+    </tbody>
+
+    <thead>
+    <tr>
+        <td scope="row" colspan="2"></td>
+        <th>&#8372;{{sum}}.00</th>
+    </tr>
+    <tr>
+        <td scope="row" colspan="3" class="text-left">
+            <button class="btn btn-dark" routerLink="/checkout" [disabled]="quantity == 0">Check out</button>
+        </td>
+    </tr>
+    </thead>
+
+</table>

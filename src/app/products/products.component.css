@@ -1,0 +1,8 @@
+.element{
+    border: 1px solid rgba(0, 0, 0, .125);
+    cursor: pointer;
+}
+.divAlert {
+    display: flex;
+    align-items: center;
+}

@@ -1,0 +1,17 @@
+<div class="container">
+    <div class="row">
+        <div class="col-6 mb-4 pr-0" *ngFor="let el of productsArray">
+            <div class="element p-0" routerLink="/singleProduct/{{el._id}}">
+                <img src="http://localhost:3000/{{el.image[0]}}" class="img-fluid">
+                <div class="pl-2" style="background-color: #343a40!important; color: white">{{el.name}}</div>
+                <div class="pl-2" style="background-color: #343a40!important; color: white">&#8372;{{el.price}}.00</div>
+            </div>
+        </div>
+        <div class="form-control alert alert-danger divAlert" *ngIf="errorMessage">
+            {{errorMessage}}
+        </div>
+    </div>
+</div>
+
+
+

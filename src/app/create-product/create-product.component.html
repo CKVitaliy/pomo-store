@@ -1,0 +1,62 @@
+<div class="container">
+    <div class="row">
+        <div class="col pr-0">
+            <h2>Create a new product</h2>
+
+            <form [formGroup]="RF" (change)="clear()" *ngIf="RF">
+
+                <div class="form-group">
+                    <label>Name</label>
+                    <input class="form-control" type="text" formControlName="name"
+                           [class.is-invalid]="RF.get('name').invalid && RF.get('name').touched">
+                    <small class="text-danger" *ngIf="RF.get('name').invalid && RF.get('name').touched">Name is
+                        required
+                    </small>
+                </div>
+
+                <div class="form-group">
+                    <label>Price</label>
+                    <input class="form-control" type="number" formControlName="price"
+                           [class.is-invalid]="RF.get('price').invalid && RF.get('price').touched">
+                    <small class="text-danger" *ngIf="RF.get('price').invalid && RF.get('price').touched">Price is
+                        required, min 1
+                    </small>
+                </div>
+
+                <div class="form-group">
+                    <label>Image</label>
+                    <input class="form-control" type="file" accept="image/*" multiple (change)="onChangeImage($event)"
+                           name="image" formControlName="image"
+                           [class.is-invalid]="RF.get('image').invalid && RF.get('image').touched">
+                    <small class="text-danger" *ngIf="RF.get('image').invalid && RF.get('image').touched">Image is
+                        required
+                    </small>
+                </div>
+
+                <div class="form-group">
+                    <label>Group</label>
+                    <select class="form-control" formControlName="group">
+                        <option *ngFor="let el of allCategoryArray">{{el.name}}</option>
+                    </select>
+                </div>
+
+                <div class="form-control alert alert-danger divAlert" *ngIf="errorMessage">
+                    {{errorMessage}}
+                </div>
+
+                <div class="form-group">
+                    <button type="button" class="btn btn-dark" [disabled]="!RF.valid" (click)="createProduct()">Create
+                    </button>
+                </div>
+
+            </form>
+            <div class="form-control alert alert-success divAlert" *ngIf="successMessage">
+                {{successMessage}}
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+

@@ -1,0 +1,40 @@
+<div class="container">
+    <div class="row">
+        <div class="col pr-0">
+            <h2>All created products</h2>
+
+            <table class="table table-bordered" *ngIf="createdProductsArray">
+                <tbody *ngFor="let el of createdProductsArray">
+                <tr>
+                    <td scope="col">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-4 form-group">
+                                    <label>Name</label>
+                                    <div class="form-control">{{el.name}}</div>
+                                </div>
+                                <div class="col-4 form-group">
+                                    <label>Price</label>
+                                    <div class="form-control">{{el.price}}</div>
+                                </div>
+                                <div class="col-1 form-group mr-1">
+                                    <label class="invisible">Edit</label>
+                                    <button class="btn btn-dark" routerLink="/admin/editOneProduct/{{el._id}}">Edit</button>
+                                </div>
+                                <div class="col-1 form-group">
+                                    <label class="invisible">Del</label>
+                                    <button class="btn btn-dark" (click)="deleteProduct(el._id)">Del</button>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <div class="form-control alert alert-danger divAlert" *ngIf="errorMessage">
+                {{errorMessage}}
+            </div>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h2>All orders</h2>
+      <table class="table table-bordered">
+        <tbody *ngFor="let el of ordersArray">
+        <tr>
+          <td>{{el.time}}</td>
+          <td>
+            Name: {{el.userInfo.name}}<br>
+            Email: {{el.userInfo.email}}<br>
+            Phone: {{el.userInfo.phone}}<br>
+            Country: {{el.userInfo.country}}<br>
+            Region: {{el.userInfo.region}}<br>
+            City: {{el.userInfo.city}}<br>
+            Post office: {{el.userInfo.np}}
+          </td>
+          <td *ngFor="let el2 of el.chosenProducts">
+            <div>
+              Name: {{el2.name}}, size {{el2.size}}<br>
+              Price: {{el2.price}}<br>
+              Quantity: {{el2.quantity}}
+            </div>
+          </td>
+          <td><button class="btn btn-dark" (click)="deleteOrder(el._id)">Dell</button></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

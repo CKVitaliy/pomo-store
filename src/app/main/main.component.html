@@ -1,0 +1,85 @@
+{{user$.userEmail}}
+<div class="container">
+    <div class="row mt-2">
+        <div class="col">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                <div class="navbar-collapse">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" routerLink="allCategories">Home</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Categories
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <div *ngFor="let el of allCategoryArray">
+                                    <a class="dropdown-item" routerLink="products/{{el.name}}">{{el.name}}</a>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" routerLink="aboutMe">About me</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" routerLink="delivery">Delivery</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" routerLink="basket">
+                                <img alt="pay" src="../../assets/Pictures/pay.jpg" style="width: 25px">
+                                <span style="color: orange">{{quantity}}</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <form class="form-inline my-2 my-lg-0">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button>
+                    </form>
+
+                    <div class="nav-item dropdown" *ngIf="user$.adminRights">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownA" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            AdminPOMO
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownA">
+                            <a class="dropdown-item" routerLink="admin/createProduct">Create a product</a>
+                            <a class="dropdown-item" routerLink="admin/editProduct">Edit/Delete a product</a>
+                            <a class="dropdown-item" routerLink="admin/createCategory">Create/Delete a category</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" routerLink="admin/orders">Orders</a>
+                        </div>
+                    </div>
+
+                    <div *ngIf="firstLetter">
+                        <button class="btn btn-outline-secondary ml-1 mr-1 userEmail">{{firstLetter}}</button>
+                    </div>
+
+                    <div *ngIf="!submitService.loggedIn()">
+                        <button class="btn btn-outline-secondary" routerLink="login">LogIn</button>
+                    </div>
+
+                    <div *ngIf="submitService.loggedIn()">
+                        <button class="btn btn-outline-secondary" routerLink="login"
+                                (click)="submitService.loggedOut()">LogOut
+                        </button>
+                    </div>
+
+                </div>
+            </nav>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-3">
+            <a routerLink="/allCategories" class="list-group-item list-group-item-action">All categories</a>
+            <div class="list-group" *ngFor="let el of allCategoryArray">
+                <a routerLink="/products/{{el.name}}" class="list-group-item list-group-item-action">{{el.name}}</a>
+            </div>
+        </div>
+        <div class="col-9">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>
+
